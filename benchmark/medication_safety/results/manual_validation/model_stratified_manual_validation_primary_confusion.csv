@@ -1,0 +1,13 @@
+Response model,Communication metric,Both positive,Both negative,Judge positive / manual negative,Manual positive / judge negative
+Claude Sonnet 4.6,Patient-attitude responsiveness,42,0,22,0
+Claude Sonnet 4.6,Understandability,49,0,15,0
+Claude Sonnet 4.6,Usefulness,36,0,28,0
+GPT-5.4,Patient-attitude responsiveness,25,14,25,0
+GPT-5.4,Understandability,19,26,15,4
+GPT-5.4,Usefulness,7,0,57,0
+GPT-OSS-120B,Patient-attitude responsiveness,38,3,22,1
+GPT-OSS-120B,Understandability,45,3,0,16
+GPT-OSS-120B,Usefulness,33,5,25,1
+Med42-8B,Patient-attitude responsiveness,20,22,14,8
+Med42-8B,Understandability,14,28,17,5
+Med42-8B,Usefulness,4,40,19,1

@@ -1,0 +1,4 @@
+judge,metric,n,manual_positive_rate,judge_positive_rate,agreement,cohens_kappa,both_positive,both_negative,judge_positive_manual_negative,manual_positive_judge_negative,both_positive_rate,both_negative_rate,judge_positive_manual_negative_rate,manual_positive_judge_negative_rate
+DeepSeek V4 Flash,understandability,256,0.59375,0.73046875,0.75390625,0.4612506680919294,138,55,49,14,0.5390625,0.21484375,0.19140625,0.0546875
+DeepSeek V4 Flash,usefulness,256,0.3203125,0.87109375,0.44921875,0.1303845041919629,82,33,141,0,0.3203125,0.12890625,0.55078125,0.0
+DeepSeek V4 Flash,patient_attitude_responsiveness,256,0.5234375,0.81640625,0.63671875,0.2512265693797962,125,38,84,9,0.48828125,0.1484375,0.328125,0.03515625

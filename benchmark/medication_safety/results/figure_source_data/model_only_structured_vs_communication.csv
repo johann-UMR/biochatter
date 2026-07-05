@@ -1,0 +1,5 @@
+model_label,evaluated_model,structured_score,communication_score
+Claude Sonnet 4.6,claude-sonnet-4-6,0.6150620675462681,0.8782552083333334
+GPT-5.4,gpt-5.4,0.666169905870017,0.734375
+GPT-OSS-120B,openai/gpt-oss-120b,0.5142227009971513,0.8631510416666666
+Med42-8B,m42-health/Llama3-Med42-8B,0.38278184707269,0.5143229166666667

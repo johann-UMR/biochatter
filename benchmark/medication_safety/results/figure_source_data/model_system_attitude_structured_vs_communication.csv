@@ -1,0 +1,65 @@
+model_label,evaluated_model,system_prompt,patient_attitude,structured_score,communication_score
+Claude Sonnet 4.6,claude-sonnet-4-6,minimal,anxious,0.6744234291905469,0.6666666666666667
+Claude Sonnet 4.6,claude-sonnet-4-6,minimal,confident,0.6570043652032529,0.8604166666666666
+Claude Sonnet 4.6,claude-sonnet-4-6,minimal,neutral,0.6663913114376885,0.88125
+Claude Sonnet 4.6,claude-sonnet-4-6,minimal,very_anxious,0.6616978345616791,0.6916666666666667
+Claude Sonnet 4.6,claude-sonnet-4-6,none,anxious,0.4877778435370703,1.0
+Claude Sonnet 4.6,claude-sonnet-4-6,none,confident,0.47689777581489656,0.9958333333333333
+Claude Sonnet 4.6,claude-sonnet-4-6,none,neutral,0.46344059079851585,0.9958333333333333
+Claude Sonnet 4.6,claude-sonnet-4-6,none,very_anxious,0.47355467007247054,1.0
+Claude Sonnet 4.6,claude-sonnet-4-6,role_attitude_sensitive,anxious,0.6747500798386841,0.9104166666666667
+Claude Sonnet 4.6,claude-sonnet-4-6,role_attitude_sensitive,confident,0.6656632850655455,0.9354166666666666
+Claude Sonnet 4.6,claude-sonnet-4-6,role_attitude_sensitive,neutral,0.6532896391468508,0.8833333333333334
+Claude Sonnet 4.6,claude-sonnet-4-6,role_attitude_sensitive,very_anxious,0.6570979404214892,0.8979166666666666
+Claude Sonnet 4.6,claude-sonnet-4-6,role_encouraging,anxious,0.6590413563409435,0.8145833333333334
+Claude Sonnet 4.6,claude-sonnet-4-6,role_encouraging,confident,0.665705274337036,0.85
+Claude Sonnet 4.6,claude-sonnet-4-6,role_encouraging,neutral,0.6575566910986093,0.8541666666666666
+Claude Sonnet 4.6,claude-sonnet-4-6,role_encouraging,very_anxious,0.646700993875011,0.8145833333333334
+GPT-5.4,gpt-5.4,minimal,anxious,0.7240382651168266,0.3875
+GPT-5.4,gpt-5.4,minimal,confident,0.7222776457811634,0.7791666666666667
+GPT-5.4,gpt-5.4,minimal,neutral,0.7255225608883775,0.7583333333333333
+GPT-5.4,gpt-5.4,minimal,very_anxious,0.7213788578780165,0.35625
+GPT-5.4,gpt-5.4,none,anxious,0.48210344300076,0.9875
+GPT-5.4,gpt-5.4,none,confident,0.4766423529212779,0.9916666666666666
+GPT-5.4,gpt-5.4,none,neutral,0.47902907237164233,1.0
+GPT-5.4,gpt-5.4,none,very_anxious,0.48669338845300514,0.9916666666666666
+GPT-5.4,gpt-5.4,role_attitude_sensitive,anxious,0.7350535718126118,0.825
+GPT-5.4,gpt-5.4,role_attitude_sensitive,confident,0.723274214413804,0.8479166666666667
+GPT-5.4,gpt-5.4,role_attitude_sensitive,neutral,0.737559759572123,0.7583333333333333
+GPT-5.4,gpt-5.4,role_attitude_sensitive,very_anxious,0.7354214912921875,0.7916666666666667
+GPT-5.4,gpt-5.4,role_encouraging,anxious,0.7321619735364756,0.3583333333333333
+GPT-5.4,gpt-5.4,role_encouraging,confident,0.725762438368634,0.7604166666666667
+GPT-5.4,gpt-5.4,role_encouraging,neutral,0.7219672402445385,0.7479166666666667
+GPT-5.4,gpt-5.4,role_encouraging,very_anxious,0.7298322182688278,0.4083333333333333
+GPT-OSS-120B,openai/gpt-oss-120b,minimal,anxious,0.5268075130571883,0.6145833333333333
+GPT-OSS-120B,openai/gpt-oss-120b,minimal,confident,0.5143826242085455,0.825
+GPT-OSS-120B,openai/gpt-oss-120b,minimal,neutral,0.5149356097760934,0.85625
+GPT-OSS-120B,openai/gpt-oss-120b,minimal,very_anxious,0.5440319873254876,0.6083333333333333
+GPT-OSS-120B,openai/gpt-oss-120b,none,anxious,0.4742084524404368,0.9958333333333333
+GPT-OSS-120B,openai/gpt-oss-120b,none,confident,0.4815025655097063,0.975
+GPT-OSS-120B,openai/gpt-oss-120b,none,neutral,0.4703167683249182,0.9708333333333334
+GPT-OSS-120B,openai/gpt-oss-120b,none,very_anxious,0.4662903234394988,0.99375
+GPT-OSS-120B,openai/gpt-oss-120b,role_attitude_sensitive,anxious,0.5429048130183973,0.9979166666666666
+GPT-OSS-120B,openai/gpt-oss-120b,role_attitude_sensitive,confident,0.5246962026343215,0.9604166666666666
+GPT-OSS-120B,openai/gpt-oss-120b,role_attitude_sensitive,neutral,0.5335569268996703,0.975
+GPT-OSS-120B,openai/gpt-oss-120b,role_attitude_sensitive,very_anxious,0.5332552528374443,0.99375
+GPT-OSS-120B,openai/gpt-oss-120b,role_encouraging,anxious,0.5494457052380542,0.66875
+GPT-OSS-120B,openai/gpt-oss-120b,role_encouraging,confident,0.5139241721544824,0.8791666666666667
+GPT-OSS-120B,openai/gpt-oss-120b,role_encouraging,neutral,0.5214752852141706,0.8583333333333334
+GPT-OSS-120B,openai/gpt-oss-120b,role_encouraging,very_anxious,0.5158290138760037,0.6375
+Med42-8B,m42-health/Llama3-Med42-8B,minimal,anxious,0.41799042842547796,0.30625
+Med42-8B,m42-health/Llama3-Med42-8B,minimal,confident,0.40114599277336216,0.6375
+Med42-8B,m42-health/Llama3-Med42-8B,minimal,neutral,0.42502455373731873,0.5895833333333333
+Med42-8B,m42-health/Llama3-Med42-8B,minimal,very_anxious,0.41474237818424153,0.24166666666666664
+Med42-8B,m42-health/Llama3-Med42-8B,none,anxious,0.3646867159593341,0.5229166666666667
+Med42-8B,m42-health/Llama3-Med42-8B,none,confident,0.36410293433378255,0.76875
+Med42-8B,m42-health/Llama3-Med42-8B,none,neutral,0.3678422719542425,0.73125
+Med42-8B,m42-health/Llama3-Med42-8B,none,very_anxious,0.37846831608524834,0.4479166666666667
+Med42-8B,m42-health/Llama3-Med42-8B,role_attitude_sensitive,anxious,0.37773418668814907,0.54375
+Med42-8B,m42-health/Llama3-Med42-8B,role_attitude_sensitive,confident,0.3733825524751655,0.6145833333333333
+Med42-8B,m42-health/Llama3-Med42-8B,role_attitude_sensitive,neutral,0.3509387037418619,0.625
+Med42-8B,m42-health/Llama3-Med42-8B,role_attitude_sensitive,very_anxious,0.3816401119328613,0.6
+Med42-8B,m42-health/Llama3-Med42-8B,role_encouraging,anxious,0.3608425847212077,0.19791666666666666
+Med42-8B,m42-health/Llama3-Med42-8B,role_encouraging,confident,0.3787987453688599,0.65
+Med42-8B,m42-health/Llama3-Med42-8B,role_encouraging,neutral,0.39160806366707684,0.58125
+Med42-8B,m42-health/Llama3-Med42-8B,role_encouraging,very_anxious,0.37556101311484946,0.17083333333333334

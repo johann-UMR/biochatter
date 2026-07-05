@@ -1,0 +1,5 @@
+comparison,basis,measure,n_judges,mean,min,max
+Alternative judges vs DeepSeek,Full corpus,agreement,6,0.8257812499999999,0.6884765625,0.8823567708333333
+Alternative judges vs DeepSeek,Full corpus,cohens_kappa,6,0.4261210717443777,0.1610534170964952,0.6521759006814943
+Alternative judges vs manual,Manual validation subset,agreement,6,0.5603298611111112,0.4973958333333333,0.6158854166666666
+Alternative judges vs manual,Manual validation subset,cohens_kappa,6,0.14334836558920336,0.0138386203959974,0.2486469277300222

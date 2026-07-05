@@ -1,0 +1,13 @@
+evaluated_model,metric,score_mean,model_label,metric_label
+claude-sonnet-4-6,patient_attitude_responsiveness,0.9375,Claude Sonnet 4.6,Patient-attitude responsiveness
+claude-sonnet-4-6,understandability,0.917578125,Claude Sonnet 4.6,Understandability
+claude-sonnet-4-6,usefulness,0.7796875,Claude Sonnet 4.6,Usefulness
+gpt-5.4,patient_attitude_responsiveness,0.756640625,GPT-5.4,Patient-attitude responsiveness
+gpt-5.4,understandability,0.506640625,GPT-5.4,Understandability
+gpt-5.4,usefulness,0.93984375,GPT-5.4,Usefulness
+m42-health/Llama3-Med42-8B,patient_attitude_responsiveness,0.63984375,Med42-8B,Patient-attitude responsiveness
+m42-health/Llama3-Med42-8B,understandability,0.322265625,Med42-8B,Understandability
+m42-health/Llama3-Med42-8B,usefulness,0.580859375,Med42-8B,Usefulness
+openai/gpt-oss-120b,patient_attitude_responsiveness,0.852734375,GPT-OSS-120B,Patient-attitude responsiveness
+openai/gpt-oss-120b,understandability,0.7734375,GPT-OSS-120B,Understandability
+openai/gpt-oss-120b,usefulness,0.96328125,GPT-OSS-120B,Usefulness

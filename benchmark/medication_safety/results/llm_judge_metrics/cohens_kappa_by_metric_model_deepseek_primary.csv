@@ -1,0 +1,13 @@
+evaluated_model,metric,n_response_units,cohens_kappa,agreement_rate
+claude-sonnet-4-6,patient_attitude_responsiveness,1280,0.708138,0.965625
+claude-sonnet-4-6,understandability,1280,0.364712,0.900781
+claude-sonnet-4-6,usefulness,1280,0.774597,0.921875
+gpt-5.4,patient_attitude_responsiveness,1280,0.930057,0.974219
+gpt-5.4,understandability,1280,0.647554,0.817969
+gpt-5.4,usefulness,1280,0.430478,0.934375
+m42-health/Llama3-Med42-8B,patient_attitude_responsiveness,1280,0.878370,0.943750
+m42-health/Llama3-Med42-8B,understandability,1280,0.542047,0.789844
+m42-health/Llama3-Med42-8B,usefulness,1280,0.612578,0.803906
+openai/gpt-oss-120b,patient_attitude_responsiveness,1280,0.737900,0.933594
+openai/gpt-oss-120b,understandability,1280,0.529412,0.828125
+openai/gpt-oss-120b,usefulness,1280,0.518097,0.965625

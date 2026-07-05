@@ -1,0 +1,29 @@
+evaluated_model,metric,score_mean,model_label,metric_label
+claude-sonnet-4-6,adverse_effects_recall,0.6215065527927837,Claude Sonnet 4.6,ADR recall
+claude-sonnet-4-6,adverse_effects_specificity,0.5063828260460512,Claude Sonnet 4.6,ADR precision
+claude-sonnet-4-6,common_adverse_effects_coverage,0.7385248421283578,Claude Sonnet 4.6,Common ADR recall
+claude-sonnet-4-6,contraindications_recall,0.6160992826617827,Claude Sonnet 4.6,Contra. recall
+claude-sonnet-4-6,contraindications_specificity,0.5835040358933185,Claude Sonnet 4.6,Contra. precision
+claude-sonnet-4-6,uncommon_adverse_effects_coverage,0.4819407993501065,Claude Sonnet 4.6,Uncommon ADR recall
+claude-sonnet-4-6,very_common_adverse_effects_coverage,0.8019593253968254,Claude Sonnet 4.6,Very common ADR recall
+gpt-5.4,adverse_effects_recall,0.6368289152842127,GPT-5.4,ADR recall
+gpt-5.4,adverse_effects_specificity,0.6248599411862672,GPT-5.4,ADR precision
+gpt-5.4,common_adverse_effects_coverage,0.7485784159416972,GPT-5.4,Common ADR recall
+gpt-5.4,contraindications_recall,0.6647115610540775,GPT-5.4,Contra. recall
+gpt-5.4,contraindications_specificity,0.7044023043050108,GPT-5.4,Contra. precision
+gpt-5.4,uncommon_adverse_effects_coverage,0.49558587138631294,GPT-5.4,Uncommon ADR recall
+gpt-5.4,very_common_adverse_effects_coverage,0.8306609623015874,GPT-5.4,Very common ADR recall
+m42-health/Llama3-Med42-8B,adverse_effects_recall,0.28496170907911145,Med42-8B,ADR recall
+m42-health/Llama3-Med42-8B,adverse_effects_specificity,0.4375881876276644,Med42-8B,ADR precision
+m42-health/Llama3-Med42-8B,common_adverse_effects_coverage,0.373192143143315,Med42-8B,Common ADR recall
+m42-health/Llama3-Med42-8B,contraindications_recall,0.3892100368107769,Med42-8B,Contra. recall
+m42-health/Llama3-Med42-8B,contraindications_specificity,0.5160956383026696,Med42-8B,Contra. precision
+m42-health/Llama3-Med42-8B,uncommon_adverse_effects_coverage,0.14436252166839803,Med42-8B,Uncommon ADR recall
+m42-health/Llama3-Med42-8B,very_common_adverse_effects_coverage,0.6120411706349207,Med42-8B,Very common ADR recall
+openai/gpt-oss-120b,adverse_effects_recall,0.508266645830517,GPT-OSS-120B,ADR recall
+openai/gpt-oss-120b,adverse_effects_specificity,0.33889150578739285,GPT-OSS-120B,ADR precision
+openai/gpt-oss-120b,common_adverse_effects_coverage,0.6225107910752442,GPT-OSS-120B,Common ADR recall
+openai/gpt-oss-120b,contraindications_recall,0.6323521393628301,GPT-OSS-120B,Contra. recall
+openai/gpt-oss-120b,contraindications_specificity,0.4518484945788484,GPT-OSS-120B,Contra. precision
+openai/gpt-oss-120b,uncommon_adverse_effects_coverage,0.3525141545313081,GPT-OSS-120B,Uncommon ADR recall
+openai/gpt-oss-120b,very_common_adverse_effects_coverage,0.767435515873016,GPT-OSS-120B,Very common ADR recall

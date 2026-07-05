@@ -1,0 +1,17 @@
+scenario,evaluated_model,model_label,mean,rank
+canonical_global_window12,claude-sonnet-4-6,Claude Sonnet 4.6,0.621566095065708,2.0
+canonical_global_window12,gpt-5.4,GPT-5.4,0.6768642383623833,1.0
+canonical_global_window12,m42-health/Llama3-Med42-8B,Med42-8B,0.3957961871857248,4.0
+canonical_global_window12,openai/gpt-oss-120b,GPT-OSS-120B,0.5249627850377162,3.0
+canonical_structured,claude-sonnet-4-6,Claude Sonnet 4.6,0.621416809181318,2.0
+canonical_structured,gpt-5.4,GPT-5.4,0.6722325673513093,1.0
+canonical_structured,m42-health/Llama3-Med42-8B,Med42-8B,0.39392162960955085,4.0
+canonical_structured,openai/gpt-oss-120b,GPT-OSS-120B,0.5248313210055937,3.0
+original_applicable_only,claude-sonnet-4-6,Claude Sonnet 4.6,0.5770292575738905,2.0
+original_applicable_only,gpt-5.4,GPT-5.4,0.6293193507097998,1.0
+original_applicable_only,m42-health/Llama3-Med42-8B,Med42-8B,0.3748973502028954,4.0
+original_applicable_only,openai/gpt-oss-120b,GPT-OSS-120B,0.49710228790081207,3.0
+published_original,claude-sonnet-4-6,Claude Sonnet 4.6,0.5890886750908972,2.0
+published_original,gpt-5.4,GPT-5.4,0.6385925756247659,1.0
+published_original,m42-health/Llama3-Med42-8B,Med42-8B,0.3942851053049362,4.0
+published_original,openai/gpt-oss-120b,GPT-OSS-120B,0.5081447517613562,3.0

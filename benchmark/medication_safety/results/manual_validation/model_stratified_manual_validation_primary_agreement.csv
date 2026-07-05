@@ -1,0 +1,13 @@
+Response model,Communication metric,n,Manual positive rate,Judge positive rate,Agreement,Cohen's kappa
+Claude Sonnet 4.6,Patient-attitude responsiveness,64,0.656,1.000,0.656,0.000
+Claude Sonnet 4.6,Understandability,64,0.766,1.000,0.766,0.000
+Claude Sonnet 4.6,Usefulness,64,0.562,1.000,0.562,0.000
+GPT-5.4,Patient-attitude responsiveness,64,0.391,0.781,0.609,0.304
+GPT-5.4,Understandability,64,0.359,0.531,0.703,0.417
+GPT-5.4,Usefulness,64,0.109,1.000,0.109,0.000
+GPT-OSS-120B,Patient-attitude responsiveness,64,0.609,0.938,0.641,0.111
+GPT-OSS-120B,Understandability,64,0.953,0.703,0.750,0.209
+GPT-OSS-120B,Usefulness,64,0.531,0.906,0.594,0.144
+Med42-8B,Patient-attitude responsiveness,64,0.438,0.531,0.656,0.318
+Med42-8B,Understandability,64,0.297,0.484,0.656,0.304
+Med42-8B,Usefulness,64,0.078,0.359,0.688,0.181

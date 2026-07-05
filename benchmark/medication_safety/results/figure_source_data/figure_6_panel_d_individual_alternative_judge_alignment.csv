@@ -1,0 +1,13 @@
+judge,agreement,cohens_kappa,comparison,basis
+Claude Sonnet 4.6,0.8823567708333333,0.6521759006814943,Alternative judges vs DeepSeek,Full corpus
+GPT-5.4-mini,0.6884765625,0.1610534170964952,Alternative judges vs DeepSeek,Full corpus
+Qwen3-235B,0.8320963541666667,0.3098207480844621,Alternative judges vs DeepSeek,Full corpus
+Kimi K2.6,0.8587890625,0.5400150703914524,Alternative judges vs DeepSeek,Full corpus
+Gemma 4 31B,0.8635416666666667,0.6389708014163796,Alternative judges vs DeepSeek,Full corpus
+Mistral Large 3,0.8294270833333334,0.2546904927959824,Alternative judges vs DeepSeek,Full corpus
+Claude Sonnet 4.6,0.6158854166666666,0.2486469277300222,Alternative judges vs manual,Manual validation subset
+GPT-5.4-mini,0.4973958333333333,0.0138386203959974,Alternative judges vs manual,Manual validation subset
+Qwen3-235B,0.5390625,0.1075630252100839,Alternative judges vs manual,Manual validation subset
+Kimi K2.6,0.5833333333333334,0.1891891891891892,Alternative judges vs manual,Manual validation subset
+Gemma 4 31B,0.6067708333333334,0.2282793867120954,Alternative judges vs manual,Manual validation subset
+Mistral Large 3,0.51953125,0.0725730442978321,Alternative judges vs manual,Manual validation subset

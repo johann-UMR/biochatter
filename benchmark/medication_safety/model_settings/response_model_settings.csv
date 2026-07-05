@@ -1,0 +1,5 @@
+Response model,API model ID,Provider / endpoint,Temperature,Max output tokens,Notes
+Claude Sonnet 4.6,claude-sonnet-4-6,Anthropic API,0.0,Not explicitly set,Proprietary response-generation model
+GPT-5.4,gpt-5.4,OpenAI API,1.0,Not explicitly set,Temperature 0 was not supported in the employed wrapper
+GPT-OSS-120B,openai/gpt-oss-120b,Hugging Face Router using OpenAI-compatible endpoint,0.0,4096,General-purpose open-weight response-generation model
+Med42-8B,m42-health/Llama3-Med42-8B,Hugging Face Router using Featherless AI provider endpoint,0.0,4096,Medically oriented open-weight response-generation model
