@@ -45,12 +45,16 @@ def iter_benchmark_instances(data_path: Path):
                     "system_prompt_label": PROMPT_LABELS.get(system_prompt_key, system_prompt_key),
                     "patient_attitude": patient_attitude,
                     "system_prompt": one_line("\n".join(system_prompt_lines)),
-                    "user_prompt": one_line(build_user_prompt(case, patient_attitude, patient_attitudes)),
+                    "user_prompt": one_line(
+                        build_user_prompt(case, patient_attitude, patient_attitudes)
+                    ),
                 }
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build the 320 medication safety benchmark instances.")
+    parser = argparse.ArgumentParser(
+        description="Build the 320 medication safety benchmark instances."
+    )
     parser.add_argument("--data", type=Path, default=DEFAULT_DATA, help="Benchmark YAML file.")
     parser.add_argument("--output", type=Path, help="Optional output CSV path. Defaults to stdout.")
     args = parser.parse_args()

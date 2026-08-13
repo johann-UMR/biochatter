@@ -1,0 +1,13 @@
+evaluated_model,metric,mean_score
+GLM 4.5,patient_attitude_responsiveness,0.7671875
+GLM 4.5,understandability,0.708984375
+GLM 4.5,usefulness,0.85546875
+Gemini 3.5 Flash,patient_attitude_responsiveness,0.997265625
+Gemini 3.5 Flash,understandability,0.9921875
+Gemini 3.5 Flash,usefulness,0.998046875
+Llama 3.1 8B Instruct,patient_attitude_responsiveness,0.5359375
+Llama 3.1 8B Instruct,understandability,0.471875
+Llama 3.1 8B Instruct,usefulness,0.28515625
+Llama 4 Maverick,patient_attitude_responsiveness,0.783203125
+Llama 4 Maverick,understandability,0.7875
+Llama 4 Maverick,usefulness,0.956640625

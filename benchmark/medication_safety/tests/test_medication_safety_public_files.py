@@ -1,7 +1,20 @@
 from __future__ import annotations
 
+import csv
+import hashlib
 from pathlib import Path
 
+import numpy as np
+
+from benchmark.medication_safety.scripts.analyze_system_prompt_tradeoff import (
+    load_and_center,
+)
+from benchmark.medication_safety.scripts.build_benchmark_instances import (
+    iter_benchmark_instances,
+)
+from benchmark.medication_safety.scripts.conservative_term_matching import (
+    MedicationSafetyScorer,
+)
 from benchmark.medication_safety.scripts.medication_safety_utils import (
     build_user_prompt,
     load_benchmark_cases,
@@ -11,7 +24,7 @@ from benchmark.medication_safety.scripts.medication_safety_utils import (
     load_system_prompts,
     synonym_aware_match,
 )
-from benchmark.medication_safety.scripts.build_benchmark_instances import iter_benchmark_instances
+from benchmark.medication_safety.scripts.update_file_manifest import manifest_payload
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,10 +60,94 @@ def test_benchmark_instance_builder_creates_320_instances() -> None:
 
 
 def test_public_term_matching_rules_detect_common_variants() -> None:
-    replacements = load_replacements(ROOT / "results" / "term_matching" / "normalization_replacements.csv")
-    groups = load_synonym_groups(ROOT / "results" / "term_matching" / "canonical_synonym_groups.csv")
+    replacements = load_replacements(
+        ROOT / "results" / "term_matching" / "normalization_replacements.csv"
+    )
+    groups = load_synonym_groups(
+        ROOT / "results" / "term_matching" / "canonical_synonym_groups.csv"
+    )
     response = "The patient reported nosebleeds, joint pain, low blood sugar, and dyspnoea."
     assert synonym_aware_match("epistaxis", response, replacements, groups)
     assert synonym_aware_match("arthralgia", response, replacements, groups)
     assert synonym_aware_match("hypoglycemia", response, replacements, groups)
     assert synonym_aware_match("dyspnea", response, replacements, groups)
+
+
+def test_conservative_scorer_uses_local_token_windows() -> None:
+    scorer = MedicationSafetyScorer.from_files(
+        ROOT / "data" / "benchmark_medication_safety_data.yaml",
+        ROOT / "results" / "term_matching" / "normalization_replacements.csv",
+        ROOT / "results" / "term_matching" / "canonical_synonym_groups.csv",
+    )
+    reordered = scorer.score(
+        1,
+        "Common adverse reactions:\n- Insulin combination was associated with heart failure.",
+    )
+    assert reordered["common_adverse_effects_coverage"] > 0
+
+    separated = scorer.score(1, "Common adverse reactions:\n- Weight\n- gain")
+    assert separated["common_adverse_effects_coverage"] == 0
+
+
+def test_response_model_settings_include_primary_and_additional_models() -> None:
+    with (ROOT / "model_settings" / "response_model_settings.csv").open(
+        "r",
+        encoding="utf-8",
+        newline="",
+    ) as handle:
+        rows = list(csv.DictReader(handle))
+    assert len(rows) == 8
+    assert {row["Analysis role"] for row in rows} == {
+        "Primary analysis",
+        "Additional analysis",
+    }
+
+
+def test_combined_system_prompt_source_data_reproduces_correlation() -> None:
+    result_dir = ROOT / "results" / "additional_response_models"
+    frame = load_and_center(
+        result_dir / "combined_system_prompt_trajectory_source_data.csv"
+    )
+    summary = next(
+        csv.DictReader(
+            (result_dir / "combined_system_prompt_tradeoff_summary.csv").open(
+                "r",
+                encoding="utf-8",
+                newline="",
+            )
+        )
+    )
+    correlation = float(
+        np.corrcoef(
+            frame["structured_centered"],
+            frame["communication_centered"],
+        )[0, 1]
+    )
+    assert len(frame) == 32
+    assert np.isclose(
+        correlation,
+        float(summary["pearson_r_model_centered"]),
+        rtol=0,
+        atol=1e-15,
+    )
+
+
+def test_file_manifest_is_complete_and_current() -> None:
+    manifest_path = ROOT / "file_manifest.csv"
+    with manifest_path.open("r", encoding="utf-8", newline="") as handle:
+        manifest = {row["relative_path"]: row for row in csv.DictReader(handle)}
+
+    expected_paths = {
+        path.relative_to(ROOT).as_posix()
+        for path in ROOT.rglob("*")
+        if path.is_file()
+        and path != manifest_path
+        and "__pycache__" not in path.parts
+        and path.suffix != ".pyc"
+    }
+    assert set(manifest) == expected_paths
+
+    for relative_path, row in manifest.items():
+        content = manifest_payload(ROOT / relative_path)
+        assert int(row["bytes"]) == len(content)
+        assert row["sha256"] == hashlib.sha256(content).hexdigest()

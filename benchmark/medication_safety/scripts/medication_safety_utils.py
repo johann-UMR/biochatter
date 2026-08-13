@@ -38,7 +38,11 @@ def load_system_prompts(path: str | Path) -> dict[str, list[str]]:
     raise ValueError("No system prompt definitions found.")
 
 
-def build_user_prompt(case: dict[str, Any], patient_attitude: str, attitude_map: dict[str, str]) -> str:
+def build_user_prompt(
+    case: dict[str, Any],
+    patient_attitude: str,
+    attitude_map: dict[str, str],
+) -> str:
     paragraph = case["input"]["medication_context"]["paragraph"]
     return f"{paragraph}\n\n{attitude_map[patient_attitude]}"
 
@@ -57,7 +61,7 @@ def load_replacements(path: str | Path) -> dict[str, str]:
 def normalize_text(text: str, replacements: dict[str, str] | None = None) -> str:
     normalized = text.lower()
     for source, target in (replacements or {}).items():
-        normalized = re.sub(rf"\b{re.escape(source)}\b", target, normalized)
+        normalized = normalized.replace(source, target)
     normalized = NON_ALNUM.sub(" ", normalized)
     return " ".join(normalized.split())
 
@@ -76,7 +80,12 @@ def load_synonym_groups(path: str | Path) -> list[set[str]]:
     return groups
 
 
-def synonym_aware_match(expected_term: str, response: str, replacements: dict[str, str], groups: list[set[str]]) -> bool:
+def synonym_aware_match(
+    expected_term: str,
+    response: str,
+    replacements: dict[str, str],
+    groups: list[set[str]],
+) -> bool:
     normalized_response = normalize_text(response, replacements)
     normalized_expected = normalize_text(expected_term, replacements)
     variants = {normalized_expected}
@@ -84,4 +93,5 @@ def synonym_aware_match(expected_term: str, response: str, replacements: dict[st
         normalized_group = {normalize_text(term, replacements) for term in group}
         if normalized_expected in normalized_group:
             variants.update(normalized_group)
-    return any(variant and variant in normalized_response for variant in variants)
+    padded_response = f" {normalized_response} "
+    return any(variant and f" {variant} " in padded_response for variant in variants)
