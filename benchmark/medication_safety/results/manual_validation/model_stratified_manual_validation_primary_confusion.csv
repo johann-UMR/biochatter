@@ -1,13 +1,25 @@
-Response model,Communication metric,Both positive,Both negative,Judge positive / manual negative,Manual positive / judge negative
-Claude Sonnet 4.6,Patient-attitude responsiveness,42,0,22,0
-Claude Sonnet 4.6,Understandability,49,0,15,0
-Claude Sonnet 4.6,Usefulness,36,0,28,0
-GPT-5.4,Patient-attitude responsiveness,25,14,25,0
-GPT-5.4,Understandability,19,26,15,4
-GPT-5.4,Usefulness,7,0,57,0
-GPT-OSS-120B,Patient-attitude responsiveness,38,3,22,1
-GPT-OSS-120B,Understandability,45,3,0,16
-GPT-OSS-120B,Usefulness,33,5,25,1
-Med42-8B,Patient-attitude responsiveness,20,22,14,8
-Med42-8B,Understandability,14,28,17,5
-Med42-8B,Usefulness,4,40,19,1
+model_name,metric,n,both_positive,both_negative,judge_positive_manual_negative,manual_positive_judge_negative
+gpt-5.4,understandability,64,18,31,10,5
+gpt-5.4,usefulness,64,7,6,51,0
+gpt-5.4,patient_attitude_responsiveness,64,25,16,23,0
+openai/gpt-oss-120b,understandability,64,47,1,2,14
+openai/gpt-oss-120b,usefulness,64,33,1,29,1
+openai/gpt-oss-120b,patient_attitude_responsiveness,64,35,10,15,4
+m42-health/Llama3-Med42-8B,understandability,64,4,42,3,15
+m42-health/Llama3-Med42-8B,usefulness,64,3,43,16,2
+m42-health/Llama3-Med42-8B,patient_attitude_responsiveness,64,19,19,17,9
+claude-sonnet-4-6,understandability,64,49,1,14,0
+claude-sonnet-4-6,usefulness,64,34,1,27,2
+claude-sonnet-4-6,patient_attitude_responsiveness,64,42,3,19,0
+google/gemini-3.5-flash,understandability,64,63,0,1,0
+meta-llama/llama-4-maverick,understandability,64,30,12,13,9
+meta-llama/llama-3.1-8b-instruct,understandability,64,13,27,9,15
+z-ai/glm-4.5,understandability,64,27,17,18,2
+google/gemini-3.5-flash,usefulness,64,59,0,5,0
+meta-llama/llama-4-maverick,usefulness,64,10,10,42,2
+meta-llama/llama-3.1-8b-instruct,usefulness,64,7,46,5,6
+z-ai/glm-4.5,usefulness,64,9,9,45,1
+google/gemini-3.5-flash,patient_attitude_responsiveness,64,59,0,5,0
+meta-llama/llama-4-maverick,patient_attitude_responsiveness,64,32,15,15,2
+meta-llama/llama-3.1-8b-instruct,patient_attitude_responsiveness,64,22,30,10,2
+z-ai/glm-4.5,patient_attitude_responsiveness,64,32,14,18,0

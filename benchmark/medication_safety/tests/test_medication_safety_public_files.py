@@ -98,9 +98,31 @@ def test_response_model_settings_include_primary_and_additional_models() -> None
         rows = list(csv.DictReader(handle))
     assert len(rows) == 8
     assert {row["Analysis role"] for row in rows} == {
-        "Primary analysis",
-        "Additional analysis",
+        "Initial response-model set",
+        "Additional response-model set",
     }
+
+
+def test_manual_validation_summaries_use_512_response_subset() -> None:
+    summary_path = ROOT / "results" / "manual_validation" / "manual_validation_512_by_metric.csv"
+    with summary_path.open("r", encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert {row["metric"] for row in rows} == {
+        "understandability",
+        "usefulness",
+        "patient_attitude_responsiveness",
+    }
+    assert {int(row["n"]) for row in rows} == {512}
+
+    calibration_path = (
+        ROOT
+        / "results"
+        / "manual_validation"
+        / "deepseek_subcriteria_calibration_512_by_metric.csv"
+    )
+    with calibration_path.open("r", encoding="utf-8", newline="") as handle:
+        calibration_rows = list(csv.DictReader(handle))
+    assert {int(row["n_responses"]) for row in calibration_rows} == {512}
 
 
 def test_combined_system_prompt_source_data_reproduces_correlation() -> None:

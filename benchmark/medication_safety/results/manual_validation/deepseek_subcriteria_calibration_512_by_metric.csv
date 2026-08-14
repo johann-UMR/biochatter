@@ -1,0 +1,4 @@
+metric,n_responses,manual_positive_rate,old_deepseek_positive_rate,new_deepseek_positive_rate,old_to_new_changed_n,old_vs_manual_agreement,old_vs_manual_kappa,new_vs_manual_agreement,new_vs_manual_kappa,new_iteration_agreement
+understandability,512,0.607421875,0.626953125,0.390625,131,0.74609375,0.4628879456432272,0.673828125,0.3769383234231083,0.890625
+usefulness,512,0.34375,0.74609375,0.646484375,83,0.54296875,0.20778671180702496,0.595703125,0.2592261239096399,0.90625
+patient_attitude_responsiveness,512,0.552734375,0.7578125,0.677734375,65,0.728515625,0.42580520234944813,0.75,0.48052442175684457,0.876953125

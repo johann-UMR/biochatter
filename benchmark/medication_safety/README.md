@@ -6,10 +6,11 @@ contraindications.
 
 The benchmark includes 20 synthetic adult medication indication cases based on
 European Medicines Agency Product Information. Each medication indication case is
-combined with four system prompts and four patient attitude conditions. Four
-response models were evaluated across four repeated response iterations, yielding
-5,120 responses in the primary analysis. Four additional response models were
-evaluated with the same design, yielding another 5,120 responses.
+combined with four system prompts and four patient attitude conditions. The
+initial four response models were evaluated across four repeated response
+iterations, yielding 5,120 responses. Four additional response models were
+evaluated with the same design, yielding another 5,120 responses. The combined
+eight-model aggregate analyses therefore cover 10,240 generated responses.
 
 ## Contents
 
@@ -27,8 +28,9 @@ evaluated with the same design, yielding another 5,120 responses.
   results from the conservative canonical term matching run.
 - `results/llm_judge_metrics/`: primary DeepSeek V4 Flash judge inferential
   summaries.
-- `results/manual_validation/`: aggregate manual validation summaries and
-  discordance analyses.
+- `results/manual_validation/`: aggregate manual validation summaries for the
+  512-response validation subset, discordance analyses, and a subcriterion-level
+  DeepSeek calibration sensitivity summary.
 - `results/judge_sensitivity/`: aggregate multi judge sensitivity summaries.
 - `results/figure_source_data/`: source data tables used to generate manuscript
   figures. Final figure image files are not included in this initial release.
@@ -91,11 +93,11 @@ prompt.
 ## Notes on reproducibility
 
 The aggregate result files in `results/` are derived from the final DeepSeek
-primary judge analysis and the conservative canonical term matching run. The
-four additional response models were evaluated with the primary DeepSeek judge,
-but were not included in manual validation or the alternative judge analysis. Some
-full corpus recomputation steps require raw model responses and raw judge
-outputs, which are not part of this public release. The released files
-therefore support audit of benchmark definitions, prompt design, scoring rules,
-aggregate outputs, and figure source data, while raw generated text remains
-excluded.
+primary judge analysis, the conservative canonical term matching run, and the
+512-response manual validation subset. The four additional response models were
+included in the DeepSeek and manual validation aggregates, but not in the
+alternative-judge sensitivity analysis. Some full corpus recomputation steps
+require raw model responses and raw judge outputs, which are not part of this
+public release. The released files therefore support audit of benchmark
+definitions, prompt design, scoring rules, aggregate outputs, and figure source
+data, while raw generated text remains excluded.
