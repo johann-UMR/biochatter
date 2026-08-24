@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = (
     ROOT
     / "results"
-    / "additional_response_models"
-    / "combined_system_prompt_trajectory_source_data.csv"
+    / "final_analysis"
+    / "summary_model_system_prompt_trajectory.csv"
 )
 MODEL_ORDER = [
     "Claude Sonnet 4.6",

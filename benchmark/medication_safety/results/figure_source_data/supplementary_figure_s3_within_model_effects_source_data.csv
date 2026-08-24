@@ -1,0 +1,161 @@
+comparison_axis,paired_on,evaluated_model,metric,n_levels,levels,n_units,friedman_statistic,degrees_of_freedom,p_value,p_value_holm,q_statistic
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,551.84618,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,508.526334,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,440.16899,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,232.481052,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,510.9652,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,310.486819,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,552.300209,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,adverse_effects_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,157.770995,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,8.262357,3,0.04089,1.0,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,10.859887,3,0.012508,0.50032,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,450.939239,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,71.234868,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,152.640343,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,51.335984,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,128.213193,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,adverse_effects_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,199.263507,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,494.931869,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,442.726905,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,418.859234,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,135.634908,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,510.110802,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,260.591554,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,509.847007,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,182.116392,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,152.285473,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,294.177148,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,439.092624,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,62.014959,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,393.17256,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,124.451382,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,370.12989,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,contraindications_recall,4,minimal;none;role_attitude_sensitive;role_encouraging,320,40.584599,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,27.280567,3,5e-06,0.000255,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,112.518329,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,208.390071,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,43.308421,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,11.506459,3,0.00928,0.38048,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,64.804549,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,162.880256,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,contraindications_specificity,4,minimal;none;role_attitude_sensitive;role_encouraging,320,19.405416,3,0.000225,0.01125,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,552.634744,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,333.207737,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,407.812882,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,119.587135,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,530.674305,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,184.446549,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,350.910012,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,uncommon_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,55.091172,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,259.554348,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,270.268519,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,309.46209,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,201.739842,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,226.390892,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,328.087655,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,259.544459,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,very_common_adverse_effects_coverage,4,minimal;none;role_attitude_sensitive;role_encouraging,320,85.639244,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,1.952523,3,0.582319,1.0,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,1.238131,3,0.743874,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,12.005859,3,0.007363,0.309246,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,6.950125,3,0.073505,1.0,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,2.016583,3,0.568972,1.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,30.312856,3,1e-06,5.2e-05,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,4.603089,3,0.203277,1.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,adverse_effects_recall,4,anxious;confident;neutral;very_anxious,320,9.187927,3,0.026894,0.94129,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,14.400383,3,0.002408,0.10836,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,4.644978,3,0.199717,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,0.547681,3,0.908298,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,5.569536,3,0.134538,1.0,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,4.152591,3,0.245451,1.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,17.670961,3,0.000514,0.024672,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,6.546254,3,0.087856,1.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,adverse_effects_specificity,4,anxious;confident;neutral;very_anxious,320,16.211799,3,0.001026,0.047196,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,9.098361,3,0.028011,0.952374,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,3.456466,3,0.326452,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,10.380445,3,0.015594,0.608166,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,13.45603,3,0.003747,0.164868,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,2.740741,3,0.433348,1.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,40.317848,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,2.675291,3,0.444443,1.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,7.873227,3,0.048706,1.0,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,8.335681,3,0.03956,1.0,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,1.639205,3,0.650533,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,1.289189,3,0.731702,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,4.160505,3,0.244646,1.0,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,10.191344,3,0.017008,0.646304,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,16.389968,3,0.000943,0.044321,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,1.87931,3,0.59783,1.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,contraindications_recall,4,anxious;confident;neutral;very_anxious,320,6.556225,3,0.087471,1.0,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,5.809232,3,0.121269,1.0,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,2.210138,3,0.529954,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,2.765146,3,0.42927,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,1.709202,3,0.63489,1.0,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,2.737668,3,0.433864,1.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,9.60553,3,0.022235,0.822695,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,0.296825,3,0.960624,1.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,contraindications_specificity,4,anxious;confident;neutral;very_anxious,320,1.130973,3,0.769603,1.0,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,0.373226,3,0.945716,1.0,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,2.824343,3,0.419508,1.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,12.747788,3,0.005215,0.224245,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,1.457108,3,0.692205,1.0,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,5.674815,3,0.128549,1.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,17.913911,3,0.000458,0.022442,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,6.727869,3,0.081096,1.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,uncommon_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,9.478166,3,0.023565,0.84834,
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,235.023938,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,222.399257,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,198.584559,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,172.435465,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,171.718816,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,121.042105,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,195.835227,3,0.0,0.0,
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,very_common_adverse_effects_coverage,4,anxious;confident;neutral;very_anxious,320,203.777567,3,0.0,0.0,
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,297.295255
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,543.190184
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,424.960976
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,328.877667
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,54.834783
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,308.0
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,297.760563
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,patient_attitude_responsiveness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,345.12311
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.010208,0.071456,11.300395
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,734.263692
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,648.04721
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,295.377049
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,104.352273
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,242.453104
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,34.790451
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,understandability,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.006216,0.049728,12.370518
+system_prompt,base_case;patient_attitude;response_index,Claude Sonnet 4.6,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,260.32028
+system_prompt,base_case;patient_attitude;response_index,GLM 4.5,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,154.690608
+system_prompt,base_case;patient_attitude;response_index,GPT-5.4,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,65.206226
+system_prompt,base_case;patient_attitude;response_index,GPT-OSS-120B,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,165.032931
+system_prompt,base_case;patient_attitude;response_index,Gemini 3.5 Flash,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,2.1e-05,0.000252,24.333333
+system_prompt,base_case;patient_attitude;response_index,Llama 3.1 8B Instruct,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,138.839335
+system_prompt,base_case;patient_attitude;response_index,Llama 4 Maverick,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,63.153242
+system_prompt,base_case;patient_attitude;response_index,Med42-8B,usefulness,4,minimal;none;role_attitude_sensitive;role_encouraging,320,,3,0.0,0.0,129.081855
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.071398,0.428388,7.015748
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,147.73444
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,122.483871
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,109.287425
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,122.88189
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,84.034091
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,150.205021
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,patient_attitude_responsiveness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,271.666667
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,80.751724
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.502913,1.0,2.350515
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.742688,1.0,1.243094
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.000161,0.00161,20.109589
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,36.468085
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.79532,1.0,1.024518
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.000131,0.001441,20.543046
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,understandability,4,anxious;confident;neutral;very_anxious,320,,3,0.185605,0.928025,4.818182
+patient_attitude,base_case;system_prompt;response_index,Claude Sonnet 4.6,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,54.700214
+patient_attitude,base_case;system_prompt;response_index,GLM 4.5,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,59.854167
+patient_attitude,base_case;system_prompt;response_index,GPT-5.4,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,48.224066
+patient_attitude,base_case;system_prompt;response_index,GPT-OSS-120B,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,98.122473
+patient_attitude,base_case;system_prompt;response_index,Gemini 3.5 Flash,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,4e-06,5.2e-05,27.874172
+patient_attitude,base_case;system_prompt;response_index,Llama 3.1 8B Instruct,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.000296,0.002664,18.833935
+patient_attitude,base_case;system_prompt;response_index,Llama 4 Maverick,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.0,0.0,42.137856
+patient_attitude,base_case;system_prompt;response_index,Med42-8B,usefulness,4,anxious;confident;neutral;very_anxious,320,,3,0.367034,1.0,3.163934

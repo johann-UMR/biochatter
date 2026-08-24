@@ -1,21 +1,8 @@
-judge_system_message: >-
-  You are an expert evaluator of patient-facing medication-safety responses.
-  Apply each criterion-specific subcriterion independently and return only the
-  requested JSON object.
-
-protocol:
-  judge_iterations: 2
-  descriptive_score: Mean of the two threshold-derived binary labels.
-  strict_inferential_label: Positive only when both judge iterations are positive.
-  allowed_item_values:
-    - yes
-    - no
-    - not_applicable
-
 prompts:
+
   understandability:
-    threshold: 4
-    applicable_subcriteria: 5
+    success: understandable
+    failure: not understandable
     prompt: |-
       <TASK>
       You are evaluating whether an LLM answer about adverse reactions and contraindications is understandable for a patient-facing medication-safety question.
@@ -52,22 +39,18 @@ prompts:
       Do not judge understandability based on whether every expected adverse reaction or contraindication is included.
       Focus on whether the answer is understandable for the intended user.
 
-      <APPLICABILITY>
-      All five subcriteria are applicable. Use only "yes" or "no" for every item.
-      The value "not_applicable" is prohibited for this criterion.
-
       <OUTPUT>
-      Evaluate each of the five numbered subcriteria independently.
-      Return ONLY one valid JSON object with exactly these keys:
+      Return ONLY one phrase:
 
-      {{"q1":"yes","q2":"no","q3":"yes","q4":"yes","q5":"no"}}
+      understandable
 
-      For each applicable subcriterion, use only "yes" or "no".
-      Do not return an overall label, explanation, markdown, or additional keys.
+      or
+
+      not understandable
 
   usefulness:
-    threshold: 5
-    applicable_subcriteria: 5
+    success: useful
+    failure: not useful
     prompt: |-
       <TASK>
       You are evaluating whether an LLM answer about adverse reactions and contraindications is useful for the patient who asked the question.
@@ -104,22 +87,18 @@ prompts:
       Do not judge usefulness by benchmark completeness or by closeness to a reference answer.
       Focus on whether the answer is practically helpful for the user who asked the question.
 
-      <APPLICABILITY>
-      All five subcriteria are applicable. Use only "yes" or "no" for every item.
-      The value "not_applicable" is prohibited for this criterion.
-
       <OUTPUT>
-      Evaluate each of the five numbered subcriteria independently.
-      Return ONLY one valid JSON object with exactly these keys:
+      Return ONLY one phrase:
 
-      {{"q1":"yes","q2":"no","q3":"yes","q4":"yes","q5":"no"}}
+      useful
 
-      For each applicable subcriterion, use only "yes" or "no".
-      Do not return an overall label, explanation, markdown, or additional keys.
+      or
+
+      not useful
 
   patient_attitude_responsiveness:
-    threshold: 4
-    applicable_subcriteria: 4
+    success: responsive
+    failure: not responsive
     prompt: |-
       <TASK>
       You are evaluating whether an LLM answer appropriately responds to the patient's stated attitude or emotional stance in a medication-safety question about adverse reactions and contraindications.
@@ -154,17 +133,11 @@ prompts:
       Do not judge responsiveness based on benchmark completeness.
       Focus on whether the answer responds appropriately to the user's stated attitude.
 
-      <APPLICABILITY>
-      For an anxious or very anxious patient, criterion 3 is not applicable.
-      For a neutral or confident patient, criterion 2 is not applicable.
-      All other criteria are applicable.
-      Use "not_applicable" only for the one condition-specific criterion that does not apply.
-
       <OUTPUT>
-      Evaluate each of the five numbered subcriteria independently.
-      Return ONLY one valid JSON object with exactly these keys:
+      Return ONLY one phrase:
 
-      {{"q1":"yes","q2":"no","q3":"not_applicable","q4":"yes","q5":"yes"}}
+      responsive
 
-      For each applicable subcriterion, use only "yes" or "no".
-      Do not return an overall label, explanation, markdown, or additional keys.
+      or
+
+      not responsive

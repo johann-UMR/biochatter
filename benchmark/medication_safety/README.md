@@ -1,59 +1,61 @@
 # Medication safety benchmark
 
-This folder contains the public release of a medication safety benchmark
-evaluating large language model responses about adverse reactions and
-contraindications.
+This folder contains the public release of a benchmark for large language model
+responses about adverse reactions and contraindications. It includes 20
+synthetic adult medication indication cases based on European Medicines Agency
+Product Information.
 
-The benchmark includes 20 synthetic adult medication indication cases based on
-European Medicines Agency Product Information. Each medication indication case is
-combined with four system prompts and four patient attitude conditions. The
-initial four response models were evaluated across four repeated response
-iterations, yielding 5,120 responses. Four additional response models were
-evaluated with the same design, yielding another 5,120 responses. The combined
-eight-model aggregate analyses therefore cover 10,240 generated responses.
+Each case was combined with four system prompts and four patient attitude
+conditions. Eight response models were evaluated across four repeated response
+iterations, yielding 10,240 responses. GPT-5.4 was rerun at temperature 0 for
+the final analysis so that all response models used temperature 0.
+
+The final primary communication analysis used DeepSeek V4 Flash with explicit
+subcriteria. The judge returned five item-level decisions for each criterion.
+Binary labels were derived with the same thresholds as the manual assessment:
+4/5 items for understandability, 5/5 for usefulness, and 4/4 applicable items
+for patient attitude responsiveness. Each response was judged twice.
 
 ## Contents
 
 - `data/benchmark_medication_safety_data.yaml`: benchmark cases, EMA source
-  metadata, system prompts, patient attitude statements, curated adverse
-  reactions, and contraindications.
-- `prompts/response_generation_prompts.yaml`: response generation prompt setup.
-- `prompts/llm_judge_prompts.yaml`: LLM-judge rubrics for understandability,
-  usefulness, and patient attitude responsiveness.
-- `model_settings/`: curated model and judge metadata. These files contain model
-  IDs and inference settings, not API keys or provider account data.
-- `scripts/`: utilities for loading cases, recreating the 320 benchmark prompts,
-  and applying the conservative term matching procedure to response text.
-- `results/structured_metrics/`: final aggregate structured medication safety
-  results from the conservative canonical term matching run.
-- `results/llm_judge_metrics/`: primary DeepSeek V4 Flash judge inferential
-  summaries.
-- `results/manual_validation/`: aggregate manual validation summaries for the
-  512-response validation subset, discordance analyses, and a subcriterion-level
-  DeepSeek calibration sensitivity summary.
-- `results/judge_sensitivity/`: aggregate multi judge sensitivity summaries.
-- `results/figure_source_data/`: source data tables used to generate manuscript
-  figures. Final figure image files are not included in this initial release.
+  metadata, prompts, patient attitude statements, curated adverse reactions,
+  and contraindications.
+- `prompts/response_generation_prompts.yaml`: response generation prompts.
+- `prompts/llm_judge_prompts.yaml`: final subcriteria-based primary judge
+  protocol.
+- `prompts/llm_judge_prompts_legacy_binary.yaml`: direct binary protocol used
+  for the alternative-judge sensitivity analysis.
+- `model_settings/`: response-model and judge settings without credentials.
+- `scripts/`: benchmark construction, term matching, scoring, trade-off, and
+  inferential analysis utilities.
+- `results/final_analysis/`: final response-level scores, aggregate trajectory
+  data, and validation reports for all eight models.
+- `results/structured_metrics/`: final structured metric summaries and tests.
+- `results/llm_judge_metrics/`: final DeepSeek communication summaries and
+  tests.
+- `results/manual_validation/`: aggregate summaries for the 512-response
+  blinded manual validation subset.
+- `results/temperature_sensitivity/`: aggregate GPT-5.4 temperature 0 versus
+  temperature 1 sensitivity results.
+- `results/judge_sensitivity/`: alternative-judge results for the common
+  5,120-response corpus from the four original response models.
+- `results/figure_source_data/`: final source tables used for manuscript
+  figures.
 - `results/term_matching/`: normalization replacements and canonical synonym
-  groups used for term matching.
-- `results/additional_response_models/`: aggregate structured and DeepSeek judge
-  results for the four additional response models, including source data for the
-  combined system prompt analysis.
-- `tests/`: minimal smoke tests for the public benchmark files.
-- `environment/python_pip_freeze.txt`: package snapshot from the local analysis
-  environment.
+  groups.
+- `environment/python_pip_freeze.txt`: analysis environment snapshot.
 
 ## Not included
 
-The public release intentionally excludes full generated model
-responses, raw LLM-judge outputs, row level manual validation labels, provider
-request logs, API keys, and local runtime configuration. Aggregate outputs and
-figure source data are included to support reproducibility of the reported
-analyses without disclosing raw generated text.
+The public release excludes full generated responses, raw judge outputs,
+row-level manual labels, manual free-text notes, provider logs, API keys, and
+local runtime configuration. Released response-level files contain only
+benchmark identifiers and derived numeric scores.
 
 ## Basic usage
 
-Run the smoke tests from the repository root:
+Run the focused validation tests from the repository root:
 
 ```bash
 python -m pytest benchmark/medication_safety/tests \
@@ -66,38 +68,27 @@ Build the 320 benchmark instances:
 python -m benchmark.medication_safety.scripts.build_benchmark_instances
 ```
 
-To write them to a file, pass `--output path/to/benchmark_instances.csv`.
-
-Score a CSV containing one generated response per row with `case_id` and
-`response` columns:
+Score a CSV containing `case_id` and `response` columns:
 
 ```bash
 python -m benchmark.medication_safety.scripts.score_responses responses.csv \
   --output scored_responses.csv
 ```
 
-Reproduce the combined system prompt correlation and permutation test:
+Reproduce the final between-model tests and system prompt trade-off analysis:
 
 ```bash
+python -m benchmark.medication_safety.scripts.analyze_final_scores
 python -m benchmark.medication_safety.scripts.analyze_system_prompt_tradeoff
 ```
 
-The smoke tests verify that the benchmark YAML loads, that the expected 20
-medication indication cases are present, and that the public matcher applies
-normalization, canonical synonym groups, local text segmentation, and the
-12-token fallback window.
-The YAML keeps the original technical prompt key `role_attitude_sensitive`;
-manuscript text refers to the same prompt as the patient attitude sensitive
-prompt.
+## Reproducibility scope
 
-## Notes on reproducibility
+The released data support audit of the benchmark definitions, prompt design,
+term matching rules, derived scores, statistical summaries, and figure source
+data. Repeating provider inference requires access to the listed models. Full
+recomputation from generated text is not possible from this public package
+because raw model responses and raw judge outputs are intentionally excluded.
 
-The aggregate result files in `results/` are derived from the final DeepSeek
-primary judge analysis, the conservative canonical term matching run, and the
-512-response manual validation subset. The four additional response models were
-included in the DeepSeek and manual validation aggregates, but not in the
-alternative-judge sensitivity analysis. Some full corpus recomputation steps
-require raw model responses and raw judge outputs, which are not part of this
-public release. The released files therefore support audit of benchmark
-definitions, prompt design, scoring rules, aggregate outputs, and figure source
-data, while raw generated text remains excluded.
+The YAML retains the technical prompt key `role_attitude_sensitive`; manuscript
+text refers to this condition as the patient attitude sensitive prompt.

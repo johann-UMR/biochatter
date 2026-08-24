@@ -1,3 +1,0 @@
-comparison,basis,rule,n,agreement,cohens_kappa,reference_positive_rate,comparison_positive_rate
-Consensus vs DeepSeek,Full corpus,strict majority of six alternative LLM-judges (>3/6 positive),15360.0,0.883203125,0.619204866511571,0.7983723958333333,0.8238932291666666
-Consensus vs manual,Manual validation subset,strict majority of six alternative LLM-judges (>3/6 positive),768.0,0.5703125,0.16385135135135137,0.4791666666666667,0.8333333333333334

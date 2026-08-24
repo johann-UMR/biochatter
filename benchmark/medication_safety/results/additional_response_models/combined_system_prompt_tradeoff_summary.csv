@@ -1,2 +1,0 @@
-n_models,n_model_prompt_points,pearson_r_model_centered,within_model_permutation_p,n_permutations
-8,32,-0.5539983331126408,0.001969980300196998,100000
