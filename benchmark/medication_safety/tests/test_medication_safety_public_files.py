@@ -12,6 +12,10 @@ import yaml
 from benchmark.medication_safety.scripts.analyze_system_prompt_tradeoff import (
     load_and_center,
 )
+from benchmark.medication_safety.scripts.analyze_final_scores import (
+    analyze_communication_within,
+    analyze_structured_within,
+)
 from benchmark.medication_safety.scripts.build_benchmark_instances import (
     iter_benchmark_instances,
 )
@@ -287,6 +291,45 @@ def test_combined_system_prompt_source_data_reproduces_correlation() -> None:
     )
     assert len(frame) == 32
     assert np.isclose(correlation, -0.6272343655209744, rtol=0, atol=1e-12)
+
+
+def test_within_model_omnibus_outputs_use_complete_paired_units() -> None:
+    scores = pd.read_csv(
+        ROOT / "results" / "final_analysis" / "final_response_metric_scores.csv"
+    )
+    released_structured = pd.read_csv(
+        ROOT / "results" / "structured_metrics" / "final_structured_within_friedman.csv"
+    )
+    released_communication = pd.read_csv(
+        ROOT / "results" / "llm_judge_metrics" / "final_communication_within_cochran_q.csv"
+    )
+    reproduced_structured = analyze_structured_within(
+        scores[scores["metric_group"].eq("structured")]
+    )
+    reproduced_communication = analyze_communication_within(
+        scores[scores["metric_group"].eq("judge")]
+    )
+    pd.testing.assert_frame_equal(
+        released_structured,
+        reproduced_structured,
+        check_exact=False,
+        rtol=1e-12,
+        atol=1e-12,
+    )
+    pd.testing.assert_frame_equal(
+        released_communication,
+        reproduced_communication,
+        check_exact=False,
+        rtol=1e-12,
+        atol=1e-12,
+    )
+    incomplete_frequency_row = released_structured[
+        released_structured["comparison_axis"].eq("patient_attitude")
+        & released_structured["evaluated_model"].eq("Claude Sonnet 4.6")
+        & released_structured["metric"].eq("very_common_adverse_effects_coverage")
+    ].iloc[0]
+    assert incomplete_frequency_row["n_units"] == 224
+    assert np.isclose(incomplete_frequency_row["p_value"], 0.2488560739)
 
 
 def test_public_release_excludes_private_and_raw_outputs() -> None:

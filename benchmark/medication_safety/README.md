@@ -75,7 +75,8 @@ python -m benchmark.medication_safety.scripts.score_responses responses.csv \
   --output scored_responses.csv
 ```
 
-Reproduce the final between-model tests and system prompt trade-off analysis:
+Reproduce the final between-model and within-model tests and system prompt
+trade-off analysis:
 
 ```bash
 python -m benchmark.medication_safety.scripts.analyze_final_scores
