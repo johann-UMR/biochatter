@@ -332,6 +332,115 @@ def test_within_model_omnibus_outputs_use_complete_paired_units() -> None:
     assert np.isclose(incomplete_frequency_row["p_value"], 0.2488560739)
 
 
+def test_published_summaries_and_figure_source_data_recompute() -> None:
+    final_root = ROOT / "results" / "final_analysis"
+    score_rows = pd.read_csv(final_root / "final_response_metric_scores.csv")
+    released_levels = pd.read_csv(final_root / "final_response_level_scores.csv")
+    keys = [
+        "model_label",
+        "case_id",
+        "system_prompt",
+        "patient_attitude",
+        "response_index",
+    ]
+    structured_metrics = [
+        "adverse_effects_recall",
+        "very_common_adverse_effects_coverage",
+        "common_adverse_effects_coverage",
+        "uncommon_adverse_effects_coverage",
+        "adverse_effects_specificity",
+        "contraindications_recall",
+        "contraindications_specificity",
+    ]
+    communication_metrics = [
+        "understandability",
+        "usefulness",
+        "patient_attitude_responsiveness",
+    ]
+    wide = score_rows.pivot(index=keys, columns="metric", values="score").reset_index()
+    recomputed_levels = wide[keys].copy()
+    recomputed_levels["structured_score"] = wide[structured_metrics].mean(axis=1)
+    recomputed_levels["communication_score"] = wide[communication_metrics].mean(axis=1)
+    merged = released_levels.merge(
+        recomputed_levels,
+        on=keys,
+        suffixes=("_released", "_recomputed"),
+        validate="one_to_one",
+    )
+    assert len(merged) == 10_240
+    assert np.allclose(
+        merged["structured_score_released"], merged["structured_score_recomputed"]
+    )
+    assert np.allclose(
+        merged["communication_score_released"], merged["communication_score_recomputed"]
+    )
+
+    for axis, filename in [
+        ("system_prompt", "summary_model_system_prompt_trajectory.csv"),
+        ("patient_attitude", "summary_model_patient_attitude_trajectory.csv"),
+    ]:
+        released = pd.read_csv(final_root / filename).sort_values(
+            ["model_label", axis]
+        ).reset_index(drop=True)
+        recomputed = (
+            released_levels.groupby(["model_label", axis], as_index=False)[
+                ["structured_score", "communication_score"]
+            ]
+            .mean()
+            .sort_values(["model_label", axis])
+            .reset_index(drop=True)
+        )
+        assert np.allclose(released["structured_score"], recomputed["structured_score"])
+        assert np.allclose(released["communication_score"], recomputed["communication_score"])
+        assert released["n"].eq(320).all()
+
+    figure_root = ROOT / "results" / "figure_source_data"
+    figure_4 = pd.read_csv(figure_root / "figure_4_model_profiles_source_data.csv")
+    figure_levels = figure_4[figure_4["panel"].eq("a_b_response_level")]
+    figure_merged = figure_levels.merge(
+        released_levels,
+        on=keys,
+        suffixes=("_figure", "_released"),
+        validate="one_to_one",
+    )
+    assert len(figure_merged) == 10_240
+    assert np.allclose(
+        figure_merged["structured_score_figure"],
+        figure_merged["structured_score_released"],
+    )
+    assert np.allclose(
+        figure_merged["communication_score_figure"],
+        figure_merged["communication_score_released"],
+    )
+
+    within_source = pd.read_csv(
+        figure_root / "supplementary_figure_s3_within_model_effects_source_data.csv"
+    ).sort_values(["comparison_axis", "evaluated_model", "metric"]).reset_index(drop=True)
+    within_tables = pd.concat(
+        [
+            pd.read_csv(
+                ROOT
+                / "results"
+                / "structured_metrics"
+                / "final_structured_within_friedman.csv"
+            ),
+            pd.read_csv(
+                ROOT
+                / "results"
+                / "llm_judge_metrics"
+                / "final_communication_within_cochran_q.csv"
+            ),
+        ],
+        ignore_index=True,
+        sort=False,
+    ).sort_values(["comparison_axis", "evaluated_model", "metric"]).reset_index(drop=True)
+    assert len(within_source) == len(within_tables) == 160
+    for column in ["n_units", "p_value", "p_value_holm"]:
+        assert np.allclose(
+            within_source[column], within_tables[column], equal_nan=True
+        )
+
+
 def test_public_release_excludes_private_and_raw_outputs() -> None:
     forbidden_name_parts = {
         "answer_key",
