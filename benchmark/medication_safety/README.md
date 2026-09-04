@@ -68,7 +68,51 @@ Build the 320 benchmark instances:
 python -m benchmark.medication_safety.scripts.build_benchmark_instances
 ```
 
-Score a CSV containing `case_id` and `response` columns:
+Run the expanded instances through the model matrix configured by BioChatter's
+benchmark fixtures:
+
+```bash
+pytest benchmark/test_medication_safety.py
+```
+
+The native test uses four response iterations by default. Set
+`BIOCHATTER_MEDICATION_SAFETY_ITERATIONS` to use another value. Responses are
+written with BioChatter's standard response schema under `benchmark/results/`.
+These local raw-response files are ignored by Git.
+
+For a model that is not part of the central benchmark matrix, use a
+BioChatter provider directly. This example runs one OpenRouter instance as a
+smoke test before starting the complete 320-instance matrix:
+
+```bash
+python -m benchmark.medication_safety.scripts.run_with_biochatter \
+  --provider openrouter \
+  --model google/gemini-3.5-flash \
+  --limit 1
+```
+
+The runner reads credentials from the provider's environment variable and
+does not accept API keys as command-line values. Supported providers are
+OpenAI, Anthropic, Gemini, OpenRouter, and OpenAI-compatible endpoints.
+
+Apply the published subcriterion judge protocol to a standard BioChatter
+response file. This direct DeepSeek example reads `DEEPSEEK_API_KEY` from the
+environment:
+
+```bash
+python -m benchmark.medication_safety.scripts.judge_with_biochatter \
+  benchmark/results/medication_safety_response_generation_MODEL_response.csv \
+  --provider deepseek \
+  --model deepseek-v4-flash
+```
+
+The judge runs twice per response and criterion by default. It records the five
+subcriteria locally, then derives the descriptive response score and the strict
+binary label. A strict label is positive only when both judge iterations are
+positive. Local raw response and judgement files are ignored by Git.
+
+Score either a simple CSV containing `case_id` and `response` columns or a
+standard BioChatter response file:
 
 ```bash
 python -m benchmark.medication_safety.scripts.score_responses responses.csv \
@@ -90,6 +134,9 @@ term matching rules, derived scores, statistical summaries, and figure source
 data. Repeating provider inference requires access to the listed models. Full
 recomputation from generated text is not possible from this public package
 because raw model responses and raw judge outputs are intentionally excluded.
+The public scripts reproduce the benchmark protocol through BioChatter, but an
+exact repeat of historical inference also depends on continued access to the
+listed provider snapshots and provider-specific decoding options.
 
 The YAML retains the technical prompt key `role_attitude_sensitive`; manuscript
 text refers to this condition as the patient attitude sensitive prompt.

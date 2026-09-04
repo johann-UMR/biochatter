@@ -7,8 +7,19 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 import yaml
 
+from benchmark.load_dataset import (
+    _expand_medication_safety_test_cases,
+    _get_yaml_data,
+)
+from benchmark.medication_safety.biochatter_adapter import (
+    RESPONSE_COLUMNS,
+    expected_concepts,
+    generate_responses,
+    run_and_record_instance,
+)
 from benchmark.medication_safety.scripts.analyze_system_prompt_tradeoff import (
     load_and_center,
 )
@@ -27,6 +38,10 @@ from benchmark.medication_safety.scripts.judge_subcriteria import (
     render_prompt,
     threshold_label,
 )
+from benchmark.medication_safety.scripts.judge_with_biochatter import (
+    JUDGEMENT_COLUMNS,
+    summarize_judgements,
+)
 from benchmark.medication_safety.scripts.medication_safety_utils import (
     build_user_prompt,
     load_benchmark_cases,
@@ -36,10 +51,29 @@ from benchmark.medication_safety.scripts.medication_safety_utils import (
     load_system_prompts,
     synonym_aware_match,
 )
+from benchmark.medication_safety.scripts.score_responses import expand_response_rows
 from benchmark.medication_safety.scripts.update_file_manifest import manifest_payload
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class FakeConversation:
+    """Minimal BioChatter conversation used by adapter tests."""
+
+    def __init__(self) -> None:
+        self.messages = []
+        self.queries = []
+
+    def reset(self) -> None:
+        self.messages = []
+
+    def append_system_message(self, message: str) -> None:
+        self.messages.append(message)
+
+    def query(self, prompt: str):
+        self.queries.append((list(self.messages), prompt))
+        return (f"response {len(self.queries)}", None, None)
 
 
 def test_benchmark_yaml_loads_with_20_cases() -> None:
@@ -76,6 +110,167 @@ def test_benchmark_instance_builder_creates_320_instances() -> None:
         "role_encouraging",
         "patient_attitude_sensitive",
     }
+
+
+def test_native_biochatter_expansion_creates_the_same_320_instances() -> None:
+    data_path = ROOT / "data" / "benchmark_medication_safety_data.yaml"
+    with data_path.open("r", encoding="utf-8") as handle:
+        raw_rows = yaml.safe_load(handle)["drug_adverse_effect_assessment"]
+
+    rows = _expand_medication_safety_test_cases(raw_rows)
+    assert len(rows) == 320
+    assert len({row["case"] for row in rows}) == 320
+    assert {row["system_prompt"] for row in rows} == {
+        "none",
+        "minimal",
+        "role_encouraging",
+        "patient_attitude_sensitive",
+    }
+    assert {row["patient_attitude"] for row in rows} == {
+        "very_anxious",
+        "anxious",
+        "neutral",
+        "confident",
+    }
+    assert all("medication_context" not in row["input"] for row in rows)
+
+
+def test_biochatter_adapter_applies_messages_and_iterations() -> None:
+    data_path = ROOT / "data" / "benchmark_medication_safety_data.yaml"
+    with data_path.open("r", encoding="utf-8") as handle:
+        raw_rows = yaml.safe_load(handle)["drug_adverse_effect_assessment"]
+    instance = next(
+        row
+        for row in _expand_medication_safety_test_cases(raw_rows)
+        if row["case_id"] == "1" and row["system_prompt"] == "minimal"
+    )
+    conversation = FakeConversation()
+
+    responses = generate_responses(conversation, instance, iterations=2)
+
+    assert responses == ["response 1", "response 2"]
+    assert len(conversation.queries) == 2
+    assert conversation.queries[0][0] == instance["input"]["system_messages"]
+    assert "pioglitazone" in conversation.queries[0][1]
+    assert "feel very worried" in conversation.queries[0][1]
+
+
+def test_biochatter_adapter_writes_standard_response_schema(tmp_path) -> None:
+    data_path = ROOT / "data" / "benchmark_medication_safety_data.yaml"
+    with data_path.open("r", encoding="utf-8") as handle:
+        raw = yaml.safe_load(handle)
+    instance = _get_yaml_data(raw)["drug_adverse_effect_assessment"][0]
+    output = tmp_path / "responses.csv"
+
+    run_and_record_instance(
+        conversation=FakeConversation(),
+        model_name="test/model",
+        instance=instance,
+        output_path=output,
+        iterations=2,
+    )
+
+    rows = pd.read_csv(output)
+    assert list(rows.columns) == RESPONSE_COLUMNS
+    assert len(rows) == 1
+    assert rows.loc[0, "model_name"] == "test/model"
+    assert rows.loc[0, "iterations"] == 2
+    assert "pioglitazone" in rows.loc[0, "prompt"]
+    assert "edema with insulin combination" in rows.loc[0, "key_words"]
+    assert expected_concepts(instance)
+
+
+def test_scoring_expands_standard_biochatter_response_rows() -> None:
+    rows = expand_response_rows(
+        [
+            {
+                "case_id": "1",
+                "subtask": "drug:pioglitazone:none:anxious",
+                "response": "['First response', 'Second response']",
+                "iterations": "2",
+                "md5_hash": "abc123",
+            },
+        ],
+    )
+
+    assert [row["response"] for row in rows] == [
+        "First response",
+        "Second response",
+    ]
+    assert [row["response_iteration"] for row in rows] == ["1", "2"]
+    assert all(row["system_prompt"] == "none" for row in rows)
+    assert all(row["patient_attitude"] == "anxious" for row in rows)
+
+
+def test_scoring_preserves_list_like_text_in_a_simple_input_row() -> None:
+    rows = expand_response_rows(
+        [{"case_id": "1", "response": "['Nausea', 'Headache']"}],
+    )
+
+    assert len(rows) == 1
+    assert rows[0]["response"] == "['Nausea', 'Headache']"
+    assert rows[0]["response_iteration"] == "1"
+
+
+def test_judge_summary_retains_split_scores_and_uses_strict_labels(
+    tmp_path,
+) -> None:
+    judgement_path = tmp_path / "judgements.csv"
+    score_path = tmp_path / "scores.csv"
+    base = {
+        "judge_model": "judge/model",
+        "evaluated_model": "response/model",
+        "case_id": "1",
+        "subtask": "drug:pioglitazone:none:anxious",
+        "system_prompt": "none",
+        "patient_attitude": "anxious",
+        "response_iteration": 1,
+        "md5_hash": "abc123",
+        "metric": "understandability",
+        "q1": "yes",
+        "q2": "yes",
+        "q3": "yes",
+        "q4": "yes",
+        "q5": "no",
+    }
+    rows = [
+        {**base, "judge_iteration": 1, "criterion_label": 1},
+        {**base, "judge_iteration": 2, "criterion_label": 0},
+    ]
+    pd.DataFrame(rows, columns=JUDGEMENT_COLUMNS).to_csv(
+        judgement_path,
+        index=False,
+    )
+
+    summarize_judgements(judgement_path, score_path)
+
+    summary = pd.read_csv(score_path).iloc[0]
+    assert summary["descriptive_score"] == 0.5
+    assert summary["strict_binary_label"] == 0
+    assert summary["judge_iterations"] == 2
+
+
+def test_judge_summary_rejects_incomplete_repeated_judgements(tmp_path) -> None:
+    judgement_path = tmp_path / "judgements.csv"
+    score_path = tmp_path / "scores.csv"
+    row = {
+        column: "yes" if column.startswith("q") else "value"
+        for column in JUDGEMENT_COLUMNS
+    }
+    row.update(
+        {
+            "judge_iteration": 1,
+            "criterion_label": 1,
+            "response_iteration": 1,
+        },
+    )
+    pd.DataFrame([row], columns=JUDGEMENT_COLUMNS).to_csv(
+        judgement_path,
+        index=False,
+    )
+
+    with pytest.raises(ValueError, match="without exactly 2 judge iterations"):
+        summarize_judgements(judgement_path, score_path)
 
 
 def test_public_term_matching_rules_detect_common_variants() -> None:
