@@ -13,8 +13,12 @@ the final analysis so that all response models used temperature 0.
 The final primary communication analysis used DeepSeek V4 Flash with explicit
 subcriteria. The judge returned five item-level decisions for each criterion.
 Binary labels were derived with the same thresholds as the manual assessment:
-4/5 items for understandability, 5/5 for usefulness, and 4/4 applicable items
-for patient attitude responsiveness. Each response was judged twice.
+at least 4/5 items for understandability, 5/5 for usefulness, and 4/4 applicable items
+for patient attitude responsiveness. Each response was judged twice per criterion,
+yielding 61,440 criterion-level ratings. Descriptive criterion scores average the
+two binary run labels (0, 0.5 or 1). Positive rates, agreement and binary-outcome
+tests use a strict label, positive only when both runs are positive. The additional
+None-to-Minimal aggregate-score test uses averaged scores, not strict labels.
 
 ## Contents
 
@@ -38,13 +42,17 @@ for patient attitude responsiveness. Each response was judged twice.
   blinded manual validation subset.
 - `results/temperature_sensitivity/`: aggregate GPT-5.4 temperature 0 versus
   temperature 1 sensitivity results.
-- `results/judge_sensitivity/`: alternative-judge results for the common
-  5,120-response corpus from the four original response models.
+- `results/judge_sensitivity/`: the final five-judge, three-response-model
+  analysis (3,840 responses, 107,520 criterion-level ratings), plus explicitly
+  documented older sensitivity summaries that are not manuscript results.
+- `results/none_minimal/`: Supplementary Table 5 aggregate-score contrasts.
 - `results/figure_source_data/`: final source tables used for manuscript
   figures.
 - `results/term_matching/`: normalization replacements and canonical synonym
   groups.
 - `environment/python_pip_freeze.txt`: analysis environment snapshot.
+- `figures/`: the manuscript figure images, including S7 with black prompt labels.
+- `MANUSCRIPT_MAP.md`: current figure/table numbering, definitions and exclusions.
 
 ## Not included
 
@@ -125,6 +133,7 @@ trade-off analysis:
 ```bash
 python -m benchmark.medication_safety.scripts.analyze_final_scores
 python -m benchmark.medication_safety.scripts.analyze_system_prompt_tradeoff
+python -m benchmark.medication_safety.scripts.analyze_none_minimal
 ```
 
 ## Reproducibility scope
@@ -139,4 +148,6 @@ exact repeat of historical inference also depends on continued access to the
 listed provider snapshots and provider-specific decoding options.
 
 The YAML retains the technical prompt key `role_attitude_sensitive`; manuscript
-text refers to this condition as the patient attitude sensitive prompt.
+text refers to this condition as the Patient-attitude sensitive prompt. The other
+display labels are None, Minimal and Role-encouraging. Technical keys are retained
+unchanged for compatibility.
