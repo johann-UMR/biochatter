@@ -111,13 +111,34 @@ environment:
 python -m benchmark.medication_safety.scripts.judge_with_biochatter \
   benchmark/results/medication_safety_response_generation_MODEL_response.csv \
   --provider deepseek \
-  --model deepseek-v4-flash
+  --model deepseek-v4-flash \
+  --temperature 0 --max-tokens 4096 --thinking enabled --reasoning-effort high
 ```
 
 The judge runs twice per response and criterion by default. It records the five
 subcriteria locally, then derives the descriptive response score and the strict
 binary label. A strict label is positive only when both judge iterations are
 positive. Local raw response and judgement files are ignored by Git.
+
+Resume validates a SHA-256 identity of the complete selected response input,
+benchmark instances, rubric, provider, endpoint and requested run settings.
+Changing any of these requires a new output path. Old judgement CSVs without
+the identity sidecar are rejected rather than silently reused. The sidecar
+contains only a digest, not prompts, responses or credentials. Duplicate or
+unexpected judge-round identifiers are rejected during summarization.
+
+Both standalone runners accept explicit `--temperature`, `--max-tokens`,
+`--reasoning-effort` and `--thinking` options. Temperature defaults to zero;
+unset optional values retain provider defaults. Thinking/reasoning overrides
+are limited to OpenAI-compatible providers. Use the documented model-specific
+settings rather than assuming one configuration fits all models. The native
+pytest model matrix still uses the central BioChatter fixture configuration.
+
+These runners support new executions, not an exact historical replay: they do
+not automatically import settings CSVs, reproduce historical context formatting,
+or implement the historical 8192-token rescue procedure. The DeepSeek example
+explicitly sets the primary 4096-token configuration, but live provider support
+must be checked separately. Offline tests do not establish API compatibility.
 
 Score either a simple CSV containing `case_id` and `response` columns or a
 standard BioChatter response file:

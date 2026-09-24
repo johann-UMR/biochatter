@@ -44,6 +44,10 @@ def main() -> None:
     parser.add_argument("--model", required=True, help="Provider model identifier.")
     parser.add_argument("--api-key-env", help="Environment variable containing the API key.")
     parser.add_argument("--base-url", help="Base URL for an OpenAI-compatible provider.")
+    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--max-tokens", type=int)
+    parser.add_argument("--reasoning-effort", choices=["low", "medium", "high"])
+    parser.add_argument("--thinking", choices=["enabled", "disabled"])
     parser.add_argument("--iterations", type=int, default=DEFAULT_ITERATIONS)
     parser.add_argument("--case-id", action="append")
     parser.add_argument("--system-prompt", action="append")
@@ -58,6 +62,10 @@ def main() -> None:
         model_name=args.model,
         api_key_env=args.api_key_env,
         base_url=args.base_url,
+        temperature=args.temperature,
+        max_tokens=args.max_tokens,
+        reasoning_effort=args.reasoning_effort,
+        thinking=args.thinking,
     )
     instances = select_instances(load_medication_safety_instances(), args)
     if not instances:

@@ -424,6 +424,7 @@ def main() -> None:
         "strict_communication_rule": "Both judge iterations must be positive.",
     }
     report_path = args.output_root / "final_analysis" / "pairwise_report.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2))
 

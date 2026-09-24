@@ -14,6 +14,7 @@ volumes/
 benchmark/encrypted_llm_test_data.json
 benchmark/results/medication_safety_response_generation_*_response.csv
 benchmark/results/medication_safety_judgements_*.csv
+benchmark/results/medication_safety_judgements_*.csv.identity.json
 site/
 benchmark/data/*
 !benchmark/data/benchmark_data.json

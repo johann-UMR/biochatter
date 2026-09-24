@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
+import json
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -32,6 +34,22 @@ if TYPE_CHECKING:
 
 
 logger = logging.getLogger(__name__)
+
+
+def validate_resume(path: Path, identity: dict) -> None:
+    """Fail closed if input, rubric or execution settings changed."""
+    manifest = path.with_suffix(path.suffix + ".identity.json")
+    digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
+    if manifest.exists():
+        if manifest.read_text(encoding="utf-8").strip() != digest:
+            msg = "Resume identity changed; choose a new output file."
+            raise ValueError(msg)
+    elif path.exists():
+        msg = "Existing judgements lack resume provenance; choose a new output file."
+        raise ValueError(msg)
+    else:
+        manifest.parent.mkdir(parents=True, exist_ok=True)
+        manifest.write_text(digest + "\n", encoding="utf-8")
 
 
 JUDGEMENT_COLUMNS = [
@@ -142,6 +160,13 @@ def summarize_judgements(
         "md5_hash",
         "metric",
     ]
+    if rows.duplicated([*group_columns, "judge_iteration"]).any():
+        msg = "Duplicate judge iteration identifiers."
+        raise ValueError(msg)
+    expected_ids = set(range(1, expected_iterations + 1))
+    if not rows["judge_iteration"].isin(expected_ids).all():
+        msg = "Unexpected judge iteration identifiers."
+        raise ValueError(msg)
     scores = rows.groupby(group_columns, as_index=False).agg(
         descriptive_score=("criterion_label", "mean"),
         judge_iterations=("criterion_label", "count"),
@@ -169,6 +194,10 @@ def main() -> None:
     parser.add_argument("--model", required=True, help="Judge model identifier.")
     parser.add_argument("--api-key-env")
     parser.add_argument("--base-url")
+    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--max-tokens", type=int)
+    parser.add_argument("--reasoning-effort", choices=["low", "medium", "high"])
+    parser.add_argument("--thinking", choices=["enabled", "disabled"])
     parser.add_argument("--judge-iterations", type=int)
     parser.add_argument("--max-attempts", type=int, default=2)
     parser.add_argument("--limit", type=int, help="Judge only the first N responses.")
@@ -177,15 +206,13 @@ def main() -> None:
     args = parser.parse_args()
 
     protocol = load_protocol()
-    judge_iterations = args.judge_iterations or protocol["protocol"]["judge_iterations"]
-    system_message = protocol["judge_system_message"]
-    conversation = create_conversation(
-        provider=args.provider,
-        model_name=args.model,
-        api_key_env=args.api_key_env,
-        base_url=args.base_url,
+    judge_iterations = (
+        args.judge_iterations if args.judge_iterations is not None else protocol["protocol"]["judge_iterations"]
     )
-
+    if judge_iterations < 1 or args.max_attempts < 1:
+        msg = "Judge iterations and max attempts must be positive."
+        raise ValueError(msg)
+    system_message = protocol["judge_system_message"]
     instances = load_medication_safety_instances()
     by_hash = {instance["hash"]: instance for instance in instances}
     response_rows = load_response_rows(args.input)
@@ -193,6 +220,33 @@ def main() -> None:
         response_rows = response_rows[: args.limit]
 
     output_path = args.output or default_judgement_path(args.model)
+    settings = {
+        "temperature": args.temperature,
+        "max_tokens": args.max_tokens,
+        "reasoning_effort": args.reasoning_effort,
+        "thinking": args.thinking,
+    }
+    validate_resume(
+        output_path,
+        {
+            "responses": response_rows,
+            "protocol": protocol,
+            "instances": instances,
+            "provider": args.provider,
+            "model": args.model,
+            "base_url": args.base_url,
+            "settings": settings,
+            "iterations": judge_iterations,
+            "max_attempts": args.max_attempts,
+        },
+    )
+    conversation = create_conversation(
+        provider=args.provider,
+        model_name=args.model,
+        api_key_env=args.api_key_env,
+        base_url=args.base_url,
+        **settings,
+    )
     completed = _completed_keys(output_path)
     for row_index, row in enumerate(response_rows, start=1):
         instance = by_hash.get(row.get("md5_hash", ""))
