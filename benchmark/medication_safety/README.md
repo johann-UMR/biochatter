@@ -161,9 +161,6 @@ python -m benchmark.medication_safety.scripts.analyze_none_minimal
 
 ### Optional live integration check
 
-A completed DeepSeek execution check, including earlier token-limit failures
-and its scope, is documented in `validation/LIVE_INTEGRATION_20260924.md`.
-
 This command makes paid API calls with your own DeepSeek credential from the
 environment. It is never invoked by CI. Use a fresh output directory:
 
