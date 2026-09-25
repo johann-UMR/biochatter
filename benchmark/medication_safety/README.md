@@ -159,6 +159,35 @@ python -m benchmark.medication_safety.scripts.analyze_none_minimal
 
 ## Reproducibility scope
 
+### Optional live integration check
+
+A completed DeepSeek execution check, including earlier token-limit failures
+and its scope, is documented in `validation/LIVE_INTEGRATION_20260924.md`.
+
+This command makes paid API calls with your own DeepSeek credential from the
+environment. It is never invoked by CI. Use a fresh output directory:
+
+```bash
+python -m benchmark.medication_safety.scripts.live_smoke \
+  --output-dir benchmark/results/medication_safety_smoke
+```
+
+It exercises one None-prompt/neutral-attitude instance, four response generations,
+structured scoring, two judge runs for each of three criteria (24 judgements), and resume
+without additional inference. The response model uses thinking disabled; the
+judge uses thinking enabled/high reasoning, both at temperature 0. Token limits
+are 8192 for generation and 4096 for judging. This is an execution check, not a
+new scientific validation or a replay of the historical eight-model study.
+Raw outputs stay in the ignored directory.
+The generated report contains counts/settings but no credentials or response text.
+Individual raw completions are saved locally before validation so a failed check
+does not discard its diagnostic evidence. A length-limited response fails the test.
+Use `--system-prompt minimal` to test the longer structured-output condition.
+`--generation-max-tokens` changes only the smoke-test response budget; it does
+not change the judge budget or any published study settings.
+
+### Historical reproducibility
+
 The released data support audit of the benchmark definitions, prompt design,
 term matching rules, derived scores, statistical summaries, and figure source
 data. Repeating provider inference requires access to the listed models. Full
